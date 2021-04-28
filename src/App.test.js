@@ -1,9 +1,9 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import Bisection from './Root of Equation/Bisection'
+import LU from './Linear Algebra/LU'
 
-it('test Bisection', () => {
-    render(<Bisection />)
-    expect(screen.getByText('Bisection')).toBeInTheDocument()
+it('test LU', () => {
+    render(<LU />)
+    expect(screen.getByText('LU Decomposition')).toBeInTheDocument()
 })

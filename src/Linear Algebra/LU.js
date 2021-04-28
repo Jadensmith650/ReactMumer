@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css'
 import { Card, Input, Button, Table } from 'antd'
-import Desmos from 'desmos'
 import { addStyles, EditableMathField } from 'react-mathquill'
 import { lusolve, format } from 'mathjs'
 const AlgebraLatex = require('algebra-latex')
