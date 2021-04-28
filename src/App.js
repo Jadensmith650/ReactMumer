@@ -29,7 +29,7 @@ import {
     UserOutlined,
 } from '@ant-design/icons'
 
-const { Header, Content, Footer, Sider } = Layout
+const { Header, Content, Sider } = Layout
 const { SubMenu } = Menu
 
 function App() {

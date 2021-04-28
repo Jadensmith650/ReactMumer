@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css'
 import { Card, Input, Button, Table } from 'antd'
-import Desmos from 'desmos'
-import { addStyles, EditableMathField } from 'react-mathquill'
-const AlgebraLatex = require('algebra-latex')
-const math = require('mathjs')
+import { addStyles } from 'react-mathquill'
 
 addStyles()
 
@@ -81,7 +78,7 @@ export default class Test extends Component {
         }
 
         this.createInterpolatePointInput()
-        for (var i = 0; i < this.state.interpolatePoint; i++) {
+        for (i = 0; i < this.state.interpolatePoint; i++) {
             document.getElementById('p' + (i + 1)).value = data.Newton.p[i]
         }
         this.forceUpdate()
