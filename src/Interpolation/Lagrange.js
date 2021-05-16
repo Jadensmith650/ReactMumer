@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import 'antd/dist/antd.css'
 import { Card, Input, Button, Table } from 'antd'
 import { addStyles } from 'react-mathquill'
+import Graph from '../components/Graph'
 
 addStyles()
 
@@ -47,18 +48,21 @@ export default class Test extends Component {
             nPoints: null,
             ans: [],
             X: null,
+            rows: [],
             interpolatePoint: null,
             showTableInput: false,
             showTableInpu2: false,
         }
         this.elt = {}
         this.calculator = {}
+        this.plot = []
     }
+
     //API
     async Ex() {
         // const url = "https://api.randomuser.me/";
-        const url = 'http://192.168.102.128:8000/Newton'
-        // const url = "http://192.168.102.128:8000/Newton";
+        const url = 'http://localhost:8000/Newton'
+        // const url = "http://localhost:8000/Newton";
         // const url = "http://127.0.0.1/Json/item.json";
         const response = await fetch(url)
         console.log(response)
@@ -120,6 +124,10 @@ export default class Test extends Component {
     lagrange(n, X) {
         fx = 0
         this.initialValue()
+        //loop set ค่า plot
+        for (var i = 0; i < x.length - 1; i++) {
+            this.plot[i] = { x: x[i + 1], y: y[i + 1] }
+        }
         for (var i = 1; i <= n; i++) {
             fx += this.L(X, i, n) * y[i]
         }
@@ -129,6 +137,8 @@ export default class Test extends Component {
     }
 
     bi() {
+        this.setState({ rows: this.plot })
+        console.log(this.state.rows)
         this.lagrange(
             parseInt(this.state.interpolatePoint),
             parseFloat(this.state.X)
@@ -140,6 +150,7 @@ export default class Test extends Component {
 
         console.log(fx)
         console.log('end')
+        this.forceUpdate()
     }
 
     createInterpolatePointInput() {
@@ -213,7 +224,6 @@ export default class Test extends Component {
                 y: y[i - 1],
             })
         }
-
         this.setState({
             showTableInput: true,
         })
@@ -224,6 +234,10 @@ export default class Test extends Component {
         return (
             <div>
                 <h1>Lagrange</h1>
+                <div className="Graphpy">
+                    {console.log(this.state.rows)}
+                    <Graph data={this.state.rows} />
+                </div>
                 <div className="row">
                     <div className="col">
                         <div>
